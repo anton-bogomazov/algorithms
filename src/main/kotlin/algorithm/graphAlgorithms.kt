@@ -8,51 +8,39 @@ import java.util.*
 
 fun <T> Graph<T, out Edge<T>>.breadthFirstSearch(startVertex: Vertex<T>): ArrayList<Vertex<T>> {
     val queue = ArrayDeque<Vertex<T>>()
-    val verticesTrace = arrayListOf<Vertex<T>>()
     val visited = arrayListOf<Vertex<T>>()
 
     queue.add(startVertex)
-    verticesTrace.add(startVertex)
 
     while (queue.isNotEmpty()) {
         val currentVertex = queue.remove()
 
-        visited.add(currentVertex)
+        if (!visited.contains(currentVertex)) visited.add(currentVertex)
 
         edges(currentVertex).forEach { edge ->
-            if (!verticesTrace.contains(edge.to)) {
-                queue.add(edge.to)
-                verticesTrace.add(edge.to)
-            }
+            if (!visited.contains(edge.to)) queue.add(edge.to)
         }
     }
 
     return visited
 }
 
-fun <T> Graph<T, out Edge<T>>.deepFirstSearch(startVertex: Vertex<T>): ArrayList<Vertex<T>> {
+fun <T> Graph<T, out Edge<T>>.depthFirstSearch(startVertex: Vertex<T>): ArrayList<Vertex<T>> {
     val stack = ArrayDeque<Vertex<T>>()
     val visited = arrayListOf<Vertex<T>>()
 
     stack.push(startVertex)
-    visited.add(startVertex)
 
     while (stack.isNotEmpty()) {
-        val vertex = stack.peek()
-        val edges = edges(vertex)
+        val currentVertex = stack.peek()
+        if (!visited.contains(currentVertex)) visited.add(currentVertex)
 
-        if (edges.isEmpty()) {
-            stack.pop()
-            continue
-        }
+        val notVisitedNeighbor = edges(currentVertex).find { edge -> edge.to !in visited }?.to
 
-        val notVisitedNeighbor = edges.find { edge -> edge.to !in visited }?.to
-
-        if (notVisitedNeighbor == null) {
-            stack.pop()
-        } else {
+        if (notVisitedNeighbor != null) {
             stack.push(notVisitedNeighbor)
-            visited.add(notVisitedNeighbor)
+        } else {
+            stack.pop()
         }
     }
 

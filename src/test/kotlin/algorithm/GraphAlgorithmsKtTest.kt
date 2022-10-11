@@ -11,7 +11,7 @@ import io.kotest.data.row
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
 
-class GraphAlgorithmsTest : FunSpec({
+class GraphAlgorithmsKtTest : FunSpec({
     val graph = MutableGraph<String, WeightedEdge<String>>()
 
     val singapore = graph.createVertex("Singapore")
@@ -46,9 +46,9 @@ class GraphAlgorithmsTest : FunSpec({
                 arrayListOf("Singapore", "Tokyo", "Hong Kong", "Detroit", "Washington DC", "Seattle", "San Francisco", "Austin Texas")
     }
 
-    test("deepFirstSearch") {
-        graph.deepFirstSearch(singapore).map { it.index } shouldBe arrayListOf(0, 1, 2, 4, 5, 6, 3, 7)
-        graph.deepFirstSearch(singapore).map { it.data } shouldBe
+    test("depthFirstSearch") {
+        graph.depthFirstSearch(singapore).map { it.index } shouldBe arrayListOf(0, 1, 2, 4, 5, 6, 3, 7)
+        graph.depthFirstSearch(singapore).map { it.data } shouldBe
                 arrayListOf("Singapore", "Tokyo", "Hong Kong", "San Francisco", "Washington DC", "Austin Texas", "Detroit", "Seattle")
     }
 

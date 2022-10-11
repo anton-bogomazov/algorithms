@@ -24,7 +24,6 @@ class GraphAlgorithmsKtTest : FunSpec({
     val seattle = graph.createVertex("Seattle")
     val sakhalin = graph.createVertex("Sakhalin")
 
-
     graph.addEdge(Edge.EdgeType.UNDIRECTED, WeightedEdge(singapore, tokyo, 500.0))
     graph.addEdge(Edge.EdgeType.UNDIRECTED, WeightedEdge(singapore, hongKong, 300.0))
     graph.addEdge(Edge.EdgeType.UNDIRECTED, WeightedEdge(hongKong, tokyo, 250.0))

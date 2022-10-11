@@ -1,78 +1,66 @@
 package util
 
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import exception.InvalidArgumentException
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.core.spec.style.FunSpec
+import io.kotest.data.row
+import io.kotest.datatest.withData
+import io.kotest.matchers.shouldBe
 import util.Matrix.Companion.intMatrix
 import util.Matrix.Companion.matrix
 
-class MatrixTest {
+class MatrixTest : FunSpec({
+    context("create generic matrix") {
+        val obj = object {}
+        withData(
+            nameFn = { "width: ${it.a}, height:${it.b}, initWith:${it.c}" },
+            row(5, 10, obj),
+            row(15, 10, ""),
+            row(5500, 1000, 1)
+        ) { (width, height, initWith) ->
+            val matrix = matrix(height, width, initWith)
 
-    @Test
-    fun `create generic matrix`() {
-        val width = 5
-        val height = 10
-        val value = "String"
-
-        val matrix = matrix(height, width, value)
-
-        matrix.forEach { row ->
-            assertThat(row.size).isEqualTo(width)
-            row.forEach { cell ->
-                assertThat(cell).isEqualTo(value)
+            matrix.forEach { row ->
+                row.size shouldBe width
+                row.forEach { cell ->
+                    cell shouldBe initWith
+                }
             }
+            matrix.size shouldBe height
         }
-        assertThat(matrix.size).isEqualTo(height)
     }
 
-    @Test
-    fun `create int matrix`() {
-        val width = 5
-        val height = 10
-        val value = 0
-
-        val matrix = intMatrix(height, width)
-
-        matrix.forEach { row ->
-            assertThat(row.size).isEqualTo(width)
-            row.forEach { cell ->
-                assertThat(cell).isEqualTo(value)
-            }
+    context("create generic matrix - error") {
+        val obj = object {}
+        withData(
+            nameFn = { "width: ${it.a}, height:${it.b}, initWith:${it.c}" },
+            row(-1, 1, obj),
+            row(1, -1, ""),
+            row(0, 1, 1),
+            row(1, 0, 10.0),
+        ) { (width, height, initWith) ->
+            shouldThrow<InvalidArgumentException> {
+                matrix(height, width, initWith)
+            }.message shouldBe "Height and width should be positive"
         }
-        assertThat(matrix.size).isEqualTo(height)
     }
 
-    @Test
-    fun `create generic matrix - negative sizes - create empty`() {
-        val width = -1
-        val height = -1
-        val value = "String"
+    context("create concrete matrix") {
+        withData(
+            nameFn = { "width: ${it.a}, height:${it.b}" },
+            row(100, 5000),
+            row(1, 1),
+            row(10, 1)
+        ) { (width, height) ->
+            val matrix = intMatrix(height, width)
 
-        val matrix = matrix(height, width, value)
-
-        matrix.forEach { row ->
-            assertThat(row.size).isEqualTo(0)
-            row.forEach { cell ->
-                assertThat(cell).isEqualTo(value)
+            matrix.forEach { row ->
+                row.size shouldBe width
+                row.forEach { cell ->
+                    cell shouldBe 0
+                }
             }
+            matrix.size shouldBe height
         }
-        assertThat(matrix.size).isEqualTo(0)
     }
-
-    @Test
-    fun `create generic matrix - nil sizes - create empty`() {
-        val width = 0
-        val height = 0
-        val value = "String"
-
-        val matrix = matrix(height, width, value)
-
-        matrix.forEach { row ->
-            assertThat(row.size).isEqualTo(width)
-            row.forEach { cell ->
-                assertThat(cell).isEqualTo(value)
-            }
-        }
-        assertThat(matrix.size).isEqualTo(height)
-    }
-
-}
+})

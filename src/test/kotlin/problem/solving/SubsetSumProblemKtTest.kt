@@ -1,19 +1,23 @@
 package problem.solving
 
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import io.kotest.core.spec.style.FunSpec
+import io.kotest.data.row
+import io.kotest.datatest.withData
+import io.kotest.matchers.shouldBe
 
-class SubsetSumProblemKtTest {
+class SubsetSumProblemKtTest : FunSpec({
+    val implementations = listOf(::findSubset, ::findSubsetWithHashmap, ::findSubsetDP)
 
-    private val implementations = arrayOf(::findSubset, ::findSubsetWithHashmap, ::findSubsetDP)
-
-    @Test
-    fun `find subset - success`() {
-        val array = intArrayOf(7, 3, 2, 5, 8)
-        val target = 14
-
-        implementations.forEach { f ->
-            assertThat(f(array, target)).isEqualTo(true)
+    context("Happy path") {
+        withData(
+            nameFn = { "${it.a.toList()}, ${it.b} -> ${it.c}" },
+            row(intArrayOf(7, 3, 2, 5, 8), 14, true),
+            row(intArrayOf(7, 14, 2, 5), 14, true),
+            row(intArrayOf(7, 3, 2), 4, false)
+        ) { (array, target, expected) ->
+            implementations.forEach { f ->
+                f(array, target) shouldBe expected
+            }
         }
     }
-}
+})

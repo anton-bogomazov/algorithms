@@ -1,40 +1,23 @@
 package problem.solving
 
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import io.kotest.core.spec.style.FunSpec
+import io.kotest.data.row
+import io.kotest.datatest.withData
+import io.kotest.matchers.shouldBe
 
-class LongestCommonSubsequenceKtTest {
+class LongestCommonSubsequenceKtTest : FunSpec({
+    val implementations = listOf(::findLcsRecursion, ::findLcsRecursionWithHashMap, ::findLcsDP)
 
-    private val implementations = arrayOf(::findLcsRecursion, ::findLcsRecursionWithHashMap, ::findLcsDP)
-
-    @Test
-    fun `find lcs - success`() {
-        val firstSeq = "ABCBDAB"
-        val secondSeq = "BDCABA"
-
-        implementations.forEach { f ->
-            assertThat(f(firstSeq, secondSeq)).isEqualTo(4)
+    context("Happy path") {
+        withData(
+            nameFn = { "${it.a}, ${it.b} -> ${it.c}" },
+            row("ABCBDAB", "BDCABA", 4),
+            row("ABCDE", "FGKLO", 0),
+            row("", "", 0)
+        ) { (firstSeq, secondSeq, expected) ->
+            implementations.forEach { f ->
+                f(firstSeq, secondSeq) shouldBe expected
+            }
         }
     }
-
-    @Test
-    fun `find lcs - no matches`() {
-        val firstSeq = "ABCDE"
-        val secondSeq = "FGKLO"
-
-        implementations.forEach { f ->
-            assertThat(f(firstSeq, secondSeq)).isEqualTo(0)
-        }
-    }
-
-    @Test
-    fun `find lcs - empty strings`() {
-        val firstSeq = ""
-        val secondSeq = ""
-
-        implementations.forEach { f ->
-            assertThat(f(firstSeq, secondSeq)).isEqualTo(0)
-        }
-    }
-
-}
+})

@@ -1,5 +1,6 @@
 package problem.solving
 
+import exception.noSolutionError
 import kotlin.math.abs
 
 //  Given an unsorted unique integers array, find a pair with the given sum in it.
@@ -12,7 +13,7 @@ fun findPairBruteforce(nums: IntArray, target: Int): Pair<Int, Int> {
         }
     }
 
-    error("Pair not found")
+    noSolutionError()
 }
 
 // Complexity time/space: O(nlogn)/O(1)
@@ -31,7 +32,7 @@ fun findPairTwoPointers(nums: IntArray, target: Int): Pair<Int, Int> {
         }
     }
 
-    error("Pair not found")
+    noSolutionError()
 }
 
 // Complexity time/space: O(n)/O(n)
@@ -45,7 +46,7 @@ fun findPairWithSet(nums: IntArray, target: Int): Pair<Int, Int> {
         set.add(num)
     }
 
-    error("Pair not found")
+    noSolutionError()
 }
 
 private fun sortedPairOf(first: Int, second: Int): Pair<Int, Int> =

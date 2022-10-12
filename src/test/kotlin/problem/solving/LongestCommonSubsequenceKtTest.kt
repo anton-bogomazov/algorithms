@@ -20,4 +20,17 @@ class LongestCommonSubsequenceKtTest : FunSpec({
             }
         }
     }
+
+    context("Longest Palindromic Subsequence") {
+        withData(
+            nameFn = { "${it.a} -> ${it.b}" },
+            row("ABBDCACB", 5),
+            row("ABCBA", 5),
+            row("", 0)
+        ) { (sequence, expected) ->
+            implementations.forEach { f ->
+                f(sequence, sequence.reversed()) shouldBe expected
+            }
+        }
+    }
 })

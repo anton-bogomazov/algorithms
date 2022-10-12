@@ -51,10 +51,9 @@ fun <T> MutableGraph<T, out WeightedEdge<T>>.findShortestPath(from: Vertex<T>, t
     if (from == to) invalidArgumentError("From and To vertices are equals: ${from.data}")
 
     val queue = ArrayDeque<Vertex<T>>()
-    val tracker = PathTracker<T>()
+    val tracker = PathTracker(from)
 
     // push first vertex in both queue and tracker
-    tracker.initPath(from)
     queue.add(from)
 
     while (queue.isNotEmpty()) {
@@ -65,11 +64,11 @@ fun <T> MutableGraph<T, out WeightedEdge<T>>.findShortestPath(from: Vertex<T>, t
         edges(currentVertex).forEach { edge ->
             val targetVertex = edge.to
             // potential new weight with new edge
-            val newPathWeight = tracker.calculatePathWeight(edge.from) + edge.weight
+            val newPathWeight = tracker.getPathWeight(edge.from) + edge.weight
 
-            if (!tracker.isTracked(targetVertex) || tracker.hasLowerWeight(targetVertex, newPathWeight)) {
+            if (!tracker.isTracked(targetVertex) || newPathWeight < tracker.getPathWeight(targetVertex)) {
                 tracker.addOrUpdatePathEdge(edge, newPathWeight)
-                queue.add(edge.to)
+                queue.add(targetVertex)
             }
         }
     }

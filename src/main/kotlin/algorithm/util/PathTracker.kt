@@ -5,29 +5,22 @@ import data.structure.graph.WeightedEdge
 import exception.noSolutionError
 import util.Table
 
-class PathTracker<T>(private val visualize: Boolean = true) {
+class PathTracker<T>(startVertex: Vertex<T>, private val visualize: Boolean = false) {
 
     // Table: Vertex | The Lowest weight on the current moment + optimal edge
-    private val pathMap: HashMap<Vertex<T>, PathEdge<T>> = HashMap()
-
-    // for start vertex
-    fun initPath(vertex: Vertex<T>) {
-        pathMap[vertex] = PathEdge(totalWeight = 0.0)
-    }
+    private val pathMap = mutableMapOf<Vertex<T>, PathEdge<T>>(startVertex to PathEdge(totalWeight = 0.0))
 
     fun addOrUpdatePathEdge(edge: WeightedEdge<T>, weight: Double) {
         pathMap[edge.to] = PathEdge(edge, weight)
 
-        if (visualize) printPathMap(pathMap[edge.to]!!)
+        if (visualize) print(pathMap[edge.to]!!)
     }
-
-    fun hasLowerWeight(vertex: Vertex<T>, newWeight: Double) = newWeight < getPathWeight(vertex)
 
     fun isTracked(vertex: Vertex<T>) = pathMap[vertex] != null
 
-    fun calculatePathWeight(vertex: Vertex<T>) = collectPath(vertex).weight()
+    fun getPathWeight(vertex: Vertex<T>) = pathMap[vertex]?.totalWeight ?: collectPath(vertex).weight()
 
-    // dijkstra: backtrack path from finish to start
+    // backtrack path from finish to start
     fun collectPath(vertex: Vertex<T>): GraphPath<T> {
         val path = arrayListOf<WeightedEdge<T>>()
         var pathEdge = pathMap[vertex] ?: noSolutionError()
@@ -42,9 +35,7 @@ class PathTracker<T>(private val visualize: Boolean = true) {
         return GraphPath(path.reversed())
     }
 
-    private fun getPathWeight(vertex: Vertex<T>) = pathMap[vertex]?.totalWeight!!
-
-    private fun printPathMap(updatedPathEdge: PathEdge<T>) {
+    private fun print(updatedPathEdge: PathEdge<T>): String {
         val tableData = pathMap.toSortedMap { it1, it2 -> it1.index - it2.index }.map { (key, value) ->
             val mark = when {
                 value.isStartEdge() -> "*"
@@ -53,13 +44,14 @@ class PathTracker<T>(private val visualize: Boolean = true) {
             }
             listOf(mark + key.data, value.totalWeight.toString(), value.edge?.to?.let { collectPath(it) }.toString())
         }
-        println(Table(columnNames = arrayListOf("Vertex", "TotalWeight", "Path"), data = tableData))
+        return Table(columnNames = arrayListOf("Vertex", "TotalWeight", "Path"), data = tableData).toString()
     }
 
-    private data class PathEdge<T>(
-        val edge: WeightedEdge<T>? = null,
-        val totalWeight: Double
-    ) {
-        fun isStartEdge() = edge == null
-    }
+}
+
+private data class PathEdge<T>(
+    val edge: WeightedEdge<T>? = null,
+    val totalWeight: Double
+) {
+    fun isStartEdge() = edge == null
 }

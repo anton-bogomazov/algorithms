@@ -18,7 +18,7 @@ class PathTracker<T>(startVertex: Vertex<T>, private val visualize: Boolean = fa
 
     fun isTracked(vertex: Vertex<T>) = pathMap[vertex] != null
 
-    fun getPathWeight(vertex: Vertex<T>) = pathMap[vertex]?.totalWeight ?: collectPath(vertex).weight()
+    fun getPathWeight(vertex: Vertex<T>) = pathMap[vertex]?.totalWeight!!
 
     // backtrack path from finish to start
     fun collectPath(vertex: Vertex<T>): GraphPath<T> {

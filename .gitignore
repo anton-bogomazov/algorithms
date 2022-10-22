@@ -1,3 +1,7 @@
 /.gradle/
 /.idea/
 /build/
+/.fleet/
+
+.DS_Store
+.gitignore

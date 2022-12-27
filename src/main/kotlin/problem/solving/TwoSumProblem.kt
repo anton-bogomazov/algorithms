@@ -16,7 +16,7 @@ fun findPairBruteforce(nums: IntArray, target: Int): Pair<Int, Int> {
     noSolutionError()
 }
 
-// Complexity time/space: O(nlogn)/O(1)
+// Complexity time/space: O(n*log(n))/O(1)
 fun findPairTwoPointers(nums: IntArray, target: Int): Pair<Int, Int> {
     val sortedNums = nums.sorted()
     var leftPointer = 0

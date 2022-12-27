@@ -7,8 +7,8 @@ import io.kotest.matchers.shouldBe
 class SortTest : StringSpec({
 
     val implementations = listOf(
-        ::bubbleSort, ::insertionsSort, ::selectionSort, ::cycleSort, ::countingSort,
-        ::heapSort
+        ::bubbleSort, ::insertionsSort, ::selectionSort, ::cycleSort,
+        ::countingSort, ::heapSort, ::quickSort, ::mergeSort
     )
 
     "sort should sort an array of integers in ascending order" {

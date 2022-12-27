@@ -1,7 +1,7 @@
 package algorithm.sort
 
 // Main idea: build heap and extract values to array.
-// Worst case complexity time/space: O(nlogn)/O(1)
+// Worst case complexity time/space: O(n*log(n))/O(1)
 fun heapSort(array: Array<Int>) {
     // build heap: call heapify starting from the last internal
     // node all the way up to the root node

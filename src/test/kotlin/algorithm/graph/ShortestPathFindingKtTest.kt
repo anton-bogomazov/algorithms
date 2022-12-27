@@ -1,15 +1,15 @@
 package algorithm.graph
 
 import data.structure.graph.Edge
-import data.structure.graph.MutableGraph
 import data.structure.graph.WeightedEdge
+import data.structure.graph.WeightedGraph
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
 class ShortestPathFindingKtTest : StringSpec({
 
     "should find the shortest path between two vertices" {
-        val graph = MutableGraph<Int, WeightedEdge<Int>>()
+        val graph = WeightedGraph<Int>()
         val v1 = graph.createVertex(1)
         val v2 = graph.createVertex(2)
         val v3 = graph.createVertex(3)

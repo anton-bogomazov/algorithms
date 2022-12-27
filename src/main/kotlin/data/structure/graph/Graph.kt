@@ -2,13 +2,11 @@ package data.structure.graph
 
 
 interface Graph<T, E : Edge<T>> {
-
     fun createVertex(data: T): Vertex<T>
 
     fun addEdge(type: Edge.EdgeType, edge: E)
 
     fun edges(source: Vertex<T>): ArrayList<E>
-
 }
 
 data class Vertex<T>(val index: Int, val data: T)

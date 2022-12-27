@@ -1,12 +1,11 @@
 package algorithm.graph
 
-import data.structure.graph.MutableGraph
 import data.structure.graph.Vertex
-import data.structure.graph.WeightedEdge
+import data.structure.graph.WeightedGraph
 import exception.invalidArgumentError
 import java.util.*
 
-fun <T> MutableGraph<T, out WeightedEdge<T>>.findShortestPath(from: Vertex<T>, to: Vertex<T>): Double {
+fun <T> WeightedGraph<T>.findShortestPath(from: Vertex<T>, to: Vertex<T>): Double {
     if (from == to) invalidArgumentError("From and To vertices are equals: ${from.data}")
 
     val map = hashMapOf<Vertex<T>, Double>()

@@ -1,14 +1,14 @@
 package algorithm.graph
 
 import data.structure.graph.Edge
-import data.structure.graph.MutableGraph
 import data.structure.graph.WeightedEdge
+import data.structure.graph.WeightedGraph
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
 class TraversingKtTest : StringSpec({
 
-    val graph = MutableGraph<String, WeightedEdge<String>>()
+    val graph = WeightedGraph<String>()
 
     val singapore = graph.createVertex("Singapore")
     val tokyo = graph.createVertex("Tokyo")

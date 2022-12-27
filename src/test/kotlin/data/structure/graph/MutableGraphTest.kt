@@ -7,7 +7,7 @@ class MutableGraphTest : FunSpec({
 
     context("createVertex") {
         test("Weighted") {
-            val graph = MutableGraph<String, WeightedEdge<String>>()
+            val graph = WeightedGraph<String>()
 
             for (i in 0 until 10) {
                 val vertex = graph.createVertex(i.toString())
@@ -17,7 +17,7 @@ class MutableGraphTest : FunSpec({
         }
 
         test("Unweighted") {
-            val graph = MutableGraph<Int, Edge<Int>>()
+            val graph = WeightedGraph<Int>()
 
             for (i in 0 until 10) {
                 val vertex = graph.createVertex(i)
@@ -29,11 +29,11 @@ class MutableGraphTest : FunSpec({
 
     context("addEdge") {
         test("One edge - Undirected") {
-            val graph = MutableGraph<String, Edge<String>>()
+            val graph = WeightedGraph<String>()
             val singapore = graph.createVertex("Singapore")
             val tokyo = graph.createVertex("Tokyo")
 
-            graph.addEdge(Edge.EdgeType.UNDIRECTED, Edge(singapore, tokyo))
+            graph.addEdge(Edge.EdgeType.UNDIRECTED, WeightedEdge(singapore, tokyo, 10.0))
 
             val singaporeEdges = graph.edges(singapore)
             singaporeEdges.size shouldBe 1
@@ -50,11 +50,11 @@ class MutableGraphTest : FunSpec({
         }
 
         test("One edge - Directed") {
-            val graph = MutableGraph<String, Edge<String>>()
+            val graph = WeightedGraph<String>()
             val singapore = graph.createVertex("Singapore")
             val tokyo = graph.createVertex("Tokyo")
 
-            graph.addEdge(Edge.EdgeType.DIRECTED, Edge(singapore, tokyo))
+            graph.addEdge(Edge.EdgeType.DIRECTED, WeightedEdge(singapore, tokyo, 10.0))
 
             val singaporeEdges = graph.edges(singapore)
             singaporeEdges.size shouldBe 1
@@ -67,16 +67,16 @@ class MutableGraphTest : FunSpec({
         }
 
         test("Few edges") {
-            val graph = MutableGraph<String, Edge<String>>()
+            val graph = WeightedGraph<String>()
             val singapore = graph.createVertex("Singapore")
             val tokyo = graph.createVertex("Tokyo")
             val hongKong = graph.createVertex("Hong Kong")
 
-            graph.addEdge(Edge.EdgeType.UNDIRECTED, Edge(singapore, tokyo))
-            graph.addEdge(Edge.EdgeType.UNDIRECTED, Edge(singapore, hongKong))
-            graph.addEdge(Edge.EdgeType.DIRECTED, Edge(hongKong, tokyo))
+            graph.addEdge(Edge.EdgeType.UNDIRECTED, WeightedEdge(singapore, tokyo, 10.0))
+            graph.addEdge(Edge.EdgeType.UNDIRECTED, WeightedEdge(singapore, hongKong, 10.0))
+            graph.addEdge(Edge.EdgeType.DIRECTED, WeightedEdge(hongKong, tokyo, 10.0))
 
-            with (graph.edges(singapore)) {
+            with(graph.edges(singapore)) {
                 size shouldBe 2
                 with(get(0)) {
                     from shouldBe singapore
@@ -109,20 +109,20 @@ class MutableGraphTest : FunSpec({
 
     context("edges") {
         test("edges - few edges") {
-            val graph = MutableGraph<String, Edge<String>>()
+            val graph = WeightedGraph<String>()
             val singapore = graph.createVertex("Singapore")
             val tokyo = graph.createVertex("Tokyo")
             val hongKong = graph.createVertex("Hong Kong")
 
-            graph.addEdge(Edge.EdgeType.UNDIRECTED, Edge(singapore, tokyo))
-            graph.addEdge(Edge.EdgeType.UNDIRECTED, Edge(singapore, hongKong))
-            graph.addEdge(Edge.EdgeType.DIRECTED, Edge(hongKong, tokyo))
+            graph.addEdge(Edge.EdgeType.UNDIRECTED, WeightedEdge(singapore, tokyo, 10.0))
+            graph.addEdge(Edge.EdgeType.UNDIRECTED, WeightedEdge(singapore, hongKong, 10.0))
+            graph.addEdge(Edge.EdgeType.DIRECTED, WeightedEdge(hongKong, tokyo, 10.0))
 
             graph.edges(hongKong).size shouldBe 2
         }
 
         test("edges - empty") {
-            val graph = MutableGraph<String, Edge<String>>()
+            val graph = WeightedGraph<String>()
             val singapore = graph.createVertex("Singapore")
 
             graph.edges(singapore).size shouldBe 0
@@ -131,17 +131,17 @@ class MutableGraphTest : FunSpec({
 
     context("toString") {
         test("unweighted") {
-            val graph = MutableGraph<String, Edge<String>>()
+            val graph = WeightedGraph<String>()
             val singapore = graph.createVertex("Singapore")
             val tokyo = graph.createVertex("Tokyo")
             val hongKong = graph.createVertex("Hong Kong")
 
-            graph.addEdge(Edge.EdgeType.UNDIRECTED, Edge(singapore, tokyo))
-            graph.addEdge(Edge.EdgeType.UNDIRECTED, Edge(singapore, hongKong))
-            graph.addEdge(Edge.EdgeType.DIRECTED, Edge(hongKong, tokyo))
+            graph.addEdge(Edge.EdgeType.UNDIRECTED, WeightedEdge(singapore, tokyo, 10.0))
+            graph.addEdge(Edge.EdgeType.UNDIRECTED, WeightedEdge(singapore, hongKong, 10.0))
+            graph.addEdge(Edge.EdgeType.DIRECTED, WeightedEdge(hongKong, tokyo, 10.0))
 
             val expectedString =
-                        "Index    Source       Destinations        \n" +
+                "Index    Source       Destinations        \n" +
                         "0        Singapore    Tokyo, Hong Kong    \n" +
                         "1        Tokyo        Singapore           \n" +
                         "2        Hong Kong    Singapore, Tokyo    \n"
@@ -150,7 +150,7 @@ class MutableGraphTest : FunSpec({
         }
 
         test("weighted") {
-            val graph = MutableGraph<String, WeightedEdge<String>>()
+            val graph = WeightedGraph<String>()
             val singapore = graph.createVertex("Singapore")
             val tokyo = graph.createVertex("Tokyo")
             val hongKong = graph.createVertex("Hong Kong")

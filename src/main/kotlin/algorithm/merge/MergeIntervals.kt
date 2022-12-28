@@ -1,4 +1,4 @@
-package algorithm
+package algorithm.merge
 
 // Merge Overlapping Intervals
 // Given a set of time intervals in any order, merge all overlapping intervals into one and

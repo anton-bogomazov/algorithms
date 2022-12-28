@@ -1,4 +1,4 @@
-package algorithm
+package algorithm.merge
 
 // Given two binary max heaps as arrays. Merge it.
 // Worst case complexity time/space: O(n+k)/O(n+k)

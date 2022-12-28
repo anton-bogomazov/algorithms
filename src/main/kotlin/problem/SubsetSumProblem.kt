@@ -1,4 +1,4 @@
-package problem.solving
+package problem
 
 import util.Matrix.Companion.matrix
 

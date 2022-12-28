@@ -1,4 +1,4 @@
-package problem.solving
+package problem
 
 import exception.InvalidArgumentException
 import io.kotest.assertions.throwables.shouldThrow

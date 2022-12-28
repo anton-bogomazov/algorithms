@@ -1,4 +1,4 @@
-package problem.solving
+package problem
 
 import exception.noSolutionError
 import kotlin.math.abs

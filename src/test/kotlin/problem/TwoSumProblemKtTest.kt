@@ -1,4 +1,4 @@
-package problem.solving
+package problem
 
 import exception.NoSolutionException
 import io.kotest.assertions.throwables.shouldThrow

@@ -1,4 +1,4 @@
-package problem.solving
+package problem
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.data.row

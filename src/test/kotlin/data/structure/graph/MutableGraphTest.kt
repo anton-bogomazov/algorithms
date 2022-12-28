@@ -130,25 +130,6 @@ class MutableGraphTest : FunSpec({
     }
 
     context("toString") {
-        test("unweighted") {
-            val graph = WeightedGraph<String>()
-            val singapore = graph.createVertex("Singapore")
-            val tokyo = graph.createVertex("Tokyo")
-            val hongKong = graph.createVertex("Hong Kong")
-
-            graph.addEdge(Edge.EdgeType.UNDIRECTED, WeightedEdge(singapore, tokyo, 10.0))
-            graph.addEdge(Edge.EdgeType.UNDIRECTED, WeightedEdge(singapore, hongKong, 10.0))
-            graph.addEdge(Edge.EdgeType.DIRECTED, WeightedEdge(hongKong, tokyo, 10.0))
-
-            val expectedString =
-                "Index    Source       Destinations        \n" +
-                        "0        Singapore    Tokyo, Hong Kong    \n" +
-                        "1        Tokyo        Singapore           \n" +
-                        "2        Hong Kong    Singapore, Tokyo    \n"
-
-            graph.toString() shouldBe expectedString
-        }
-
         test("weighted") {
             val graph = WeightedGraph<String>()
             val singapore = graph.createVertex("Singapore")

@@ -21,10 +21,10 @@ class MergeHeapsKtTest : StringSpec({
     }
 
     "test merging one empty heap and one non-empty heap" {
-        val arr1 = arrayOf(5, 7, 1, 3)
+        val arr1 = arrayOf(10, 5, 6, 2)
         val arr2 = emptyArray<Int>()
         val merged = mergeHeaps(arr1, arr2)
 
-        merged shouldBe arrayOf(5, 7, 1, 3)
+        merged shouldBe arrayOf(10, 5, 6, 2)
     }
 })

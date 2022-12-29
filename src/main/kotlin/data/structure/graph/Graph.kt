@@ -6,7 +6,11 @@ interface Graph<T, E : Edge<T>> {
 
     fun addEdge(type: Edge.EdgeType, edge: E)
 
-    fun edges(source: Vertex<T>): ArrayList<E>
+    fun edges(source: Vertex<T>): List<E>
+
+    fun edges(): List<E>
+
+    fun vertices(): List<Vertex<T>>
 }
 
 data class Vertex<T>(val index: Int, val data: T)
@@ -24,9 +28,9 @@ open class Edge<T>(
     override fun toString() = to.data.toString()
 }
 
-class WeightedEdge<T>(
-    from: Vertex<T>,
-    to: Vertex<T>,
+data class WeightedEdge<T>(
+    override val from: Vertex<T>,
+    override val to: Vertex<T>,
     val weight: Double
 ) : Edge<T>(from, to) {
 

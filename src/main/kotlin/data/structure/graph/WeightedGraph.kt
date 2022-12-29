@@ -28,7 +28,11 @@ class WeightedGraph<T> : Graph<T, WeightedEdge<T>> {
         map[edge.from]?.add(edge) ?: error("${edge.from} not found in this graph")
     }
 
-    override fun edges(source: Vertex<T>) = map[source] ?: arrayListOf()
+    override fun edges(source: Vertex<T>) = map[source] ?: listOf()
+
+    override fun edges(): List<WeightedEdge<T>> = map.values.flatten()
+
+    override fun vertices(): List<Vertex<T>> = map.keys.toList()
 
     override fun toString(): String {
         val content = map.map { (vertex, edges) ->

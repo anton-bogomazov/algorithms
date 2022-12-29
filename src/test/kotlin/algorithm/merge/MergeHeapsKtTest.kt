@@ -1,6 +1,5 @@
-package algorithm
+package algorithm.merge
 
-import algorithm.merge.mergeHeaps
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.shouldBe

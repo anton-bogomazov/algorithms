@@ -1,6 +1,5 @@
-package algorithm
+package algorithm.string
 
-import algorithm.string.kmpSearch
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 

@@ -1,9 +1,9 @@
-package algorithm
+package algorithm.find
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-class QuickSelectKtTest : StringSpec({
+class FindKSmallestElementKtTest : StringSpec({
     "test finding the kth smallest element in an array" {
         val arr = arrayOf(7, 4, 6, 3, 9, 1)
         val k = 2

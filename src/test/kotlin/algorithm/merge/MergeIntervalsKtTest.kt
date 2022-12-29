@@ -1,7 +1,5 @@
-package algorithm
+package algorithm.merge
 
-import algorithm.merge.Interval
-import algorithm.merge.mergeIntervals
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 

@@ -1,4 +1,4 @@
-package algorithm
+package algorithm.find
 
 import kotlin.math.pow
 

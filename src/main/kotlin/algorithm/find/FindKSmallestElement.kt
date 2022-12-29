@@ -1,9 +1,9 @@
-package algorithm
+package algorithm.find
 
 import algorithm.util.swap
 import kotlin.random.Random
 
-// Find the k'th smallest element in an unordered list.
+// Find the k'th the smallest element in an unordered list.
 // Average case complexity time/space: O(n*log(n))/O(n). Worst case is O(n2).
 fun quickSelect(array: Array<Int>, k: Int): Int {
     array.shuffle()

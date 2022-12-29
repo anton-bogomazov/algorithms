@@ -1,4 +1,4 @@
-package algorithm
+package algorithm.find
 
 // Euclid’s algorithm
 // Finding the greatest common divisor of two numbers.

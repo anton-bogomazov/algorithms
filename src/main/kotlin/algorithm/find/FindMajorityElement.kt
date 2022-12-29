@@ -1,4 +1,4 @@
-package algorithm
+package algorithm.find
 
 // Boyer–Moore Majority Vote Algorithm
 // Given an integer array containing duplicates, return the majority element if present.

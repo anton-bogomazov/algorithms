@@ -1,4 +1,4 @@
-package problem
+package problem.longest
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.data.row

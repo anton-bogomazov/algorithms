@@ -1,4 +1,4 @@
-package problem
+package problem.longest
 
 import util.Matrix.Companion.intMatrix
 import kotlin.math.max

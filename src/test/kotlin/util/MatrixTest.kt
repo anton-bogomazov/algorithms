@@ -6,8 +6,8 @@ import io.kotest.core.spec.style.FunSpec
 import io.kotest.data.row
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
+import util.Matrix.Companion.init
 import util.Matrix.Companion.intMatrix
-import util.Matrix.Companion.matrix
 
 class MatrixTest : FunSpec({
     context("create generic matrix") {
@@ -18,7 +18,7 @@ class MatrixTest : FunSpec({
             row(15, 10, ""),
             row(5500, 1000, 1)
         ) { (width, height, initWith) ->
-            val matrix = matrix(height, width, initWith)
+            val matrix = init(height, width, initWith)
 
             matrix.forEach { row ->
                 row.size shouldBe width
@@ -40,7 +40,7 @@ class MatrixTest : FunSpec({
             row(1, 0, 10.0),
         ) { (width, height, initWith) ->
             shouldThrow<InvalidArgumentException> {
-                matrix(height, width, initWith)
+                init(height, width, initWith)
             }.message shouldBe "Height and width should be positive"
         }
     }

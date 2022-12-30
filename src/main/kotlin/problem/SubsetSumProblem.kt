@@ -1,6 +1,6 @@
 package problem
 
-import util.Matrix.Companion.matrix
+import util.Matrix.Companion.init
 
 /**
  * Given a set of positive integers and an integer k,
@@ -36,7 +36,7 @@ private fun solveRecursively(
 }
 
 fun findSubsetDP(array: IntArray, target: Int): Boolean {
-    val matrix = matrix(array.size + 1, target + 1, false)
+    val matrix = init(array.size + 1, target + 1, false)
 
     for (i in 0..array.size) {
         matrix[i][0] = true

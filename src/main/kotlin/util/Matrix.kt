@@ -9,7 +9,7 @@ class Matrix<T> private constructor(height: Int, width: Int, initWith: T) {
     }
 
     companion object {
-        fun <T> matrix(height: Int, width: Int, initWith: T) = Matrix(height, width, initWith).matrix
+        fun <T> init(height: Int, width: Int, initWith: T) = Matrix(height, width, initWith).matrix
 
         fun intMatrix(height: Int, width: Int) = Matrix(height, width, 0).matrix
     }

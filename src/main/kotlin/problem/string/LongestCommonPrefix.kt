@@ -1,4 +1,4 @@
-package problem.longest
+package problem.string
 
 import data.structure.tree.Trie
 

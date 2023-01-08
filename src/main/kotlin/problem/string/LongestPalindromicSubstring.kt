@@ -1,4 +1,4 @@
-package problem.longest
+package problem.string
 
 // Find the longest substring of a string that's also a palindrome.
 // Complexity time/space: O(n2)/O(1)

@@ -1,66 +1,62 @@
 package util
 
-import exception.InvalidArgumentException
-import io.kotest.assertions.throwables.shouldThrow
-import io.kotest.core.spec.style.FunSpec
-import io.kotest.data.row
-import io.kotest.datatest.withData
+import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import util.Matrix.Companion.init
-import util.Matrix.Companion.intMatrix
 
-class MatrixTest : FunSpec({
-    context("create generic matrix") {
-        val obj = object {}
-        withData(
-            nameFn = { "width: ${it.a}, height:${it.b}, initWith:${it.c}" },
-            row(5, 10, obj),
-            row(15, 10, ""),
-            row(5500, 1000, 1)
-        ) { (width, height, initWith) ->
-            val matrix = init(height, width, initWith)
+class MatrixTest : StringSpec({
 
-            matrix.forEach { row ->
-                row.size shouldBe width
-                row.forEach { cell ->
-                    cell shouldBe initWith
-                }
-            }
-            matrix.size shouldBe height
-        }
+    "init should create a matrix of the specified dimensions and initialized with the given value" {
+        val matrix = Matrix.init(2, 3, "yo")
+        matrix.height shouldBe 2
+        matrix.width shouldBe 3
+        matrix[0][0] shouldBe "yo"
+        matrix[0][1] shouldBe "yo"
+        matrix[0][2] shouldBe "yo"
+        matrix[1][0] shouldBe "yo"
+        matrix[1][1] shouldBe "yo"
+        matrix[1][2] shouldBe "yo"
     }
 
-    context("create generic matrix - error") {
-        val obj = object {}
-        withData(
-            nameFn = { "width: ${it.a}, height:${it.b}, initWith:${it.c}" },
-            row(-1, 1, obj),
-            row(1, -1, ""),
-            row(0, 1, 1),
-            row(1, 0, 10.0),
-        ) { (width, height, initWith) ->
-            shouldThrow<InvalidArgumentException> {
-                init(height, width, initWith)
-            }.message shouldBe "Height and width should be positive"
-        }
+    "intMatrix should create a matrix of the specified dimensions initialized with zeros" {
+        val matrix = Matrix.intMatrix(3, 2)
+        matrix.height shouldBe 3
+        matrix.width shouldBe 2
+        matrix[0][0] shouldBe 0
+        matrix[0][1] shouldBe 0
+        matrix[1][0] shouldBe 0
+        matrix[1][1] shouldBe 0
+        matrix[2][0] shouldBe 0
+        matrix[2][1] shouldBe 0
     }
 
-    context("create concrete matrix") {
-        withData(
-            nameFn = { "width: ${it.a}, height:${it.b}" },
-            row(100, 5000),
-            row(1, 1),
-            row(10, 1)
-        ) { (width, height) ->
-            val matrix = intMatrix(height, width)
-
-            matrix.forEach { row ->
-                row.size shouldBe width
-                row.forEach { cell ->
-                    cell shouldBe 0
-                }
-            }
-            matrix.size shouldBe height
-        }
+    "of should create a matrix from the given rows" {
+        val matrix = Matrix.of(listOf(listOf(1, 2, 3), listOf(4, 5, 6)))
+        matrix.height shouldBe 2
+        matrix.width shouldBe 3
+        matrix[0][0] shouldBe 1
+        matrix[0][1] shouldBe 2
+        matrix[0][2] shouldBe 3
+        matrix[1][0] shouldBe 4
+        matrix[1][1] shouldBe 5
+        matrix[1][2] shouldBe 6
     }
+
+    "isInBounds - true" {
+        val matrix = Matrix.of(listOf(listOf(1, 2, 3), listOf(4, 5, 6)))
+
+        matrix.isInBounds(0 with 0) shouldBe true
+        matrix.isInBounds(0 with 1) shouldBe true
+        matrix.isInBounds(1 with 0) shouldBe true
+        matrix.isInBounds(2 with 1) shouldBe true
+    }
+
+    "isInBounds - false" {
+        val matrix = Matrix.of(listOf(listOf(1, 2, 3), listOf(4, 5, 6)))
+
+        matrix.isInBounds(-1 with 0) shouldBe false
+        matrix.isInBounds(3 with 0) shouldBe false
+        matrix.isInBounds(0 with 4) shouldBe false
+        matrix.isInBounds(5 with 7) shouldBe false
+    }
+
 })

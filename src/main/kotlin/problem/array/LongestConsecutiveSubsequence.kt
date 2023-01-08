@@ -1,4 +1,4 @@
-package problem.longest
+package problem.array
 
 // Find the length of the longest subsequence formed by the consecutive integers.
 // The subsequence should contain all distinct values,

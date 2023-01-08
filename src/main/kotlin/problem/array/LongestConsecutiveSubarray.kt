@@ -1,4 +1,4 @@
-package problem.longest
+package problem.array
 
 import kotlin.math.max
 import kotlin.math.min

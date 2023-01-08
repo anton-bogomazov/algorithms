@@ -1,4 +1,4 @@
-package problem.longest
+package problem.array
 
 // Find subarray with alternating positive and negative elements,
 // and in which the subarray is as long as possible.

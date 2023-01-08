@@ -1,4 +1,4 @@
-package problem.longest
+package problem.array
 
 // Find the subarray of a given sequence in which the subarray’s elements are first sorted
 // in increasing order, then in decreasing order, and the subarray is as long as possible.

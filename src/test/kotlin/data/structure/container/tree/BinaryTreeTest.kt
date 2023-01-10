@@ -19,6 +19,20 @@ class BinaryTreeTest : StringSpec({
     "isBalanced() method" {
         tree().isBalanced shouldBe true
     }
+
+    "iterator" {
+        val binaryTree = tree()
+        val bstIterator = binaryTree.BSTIterator()
+        binaryTree
+
+        val expected = listOf(4, 2, 5, 1, 6, 3)
+
+        var i = 0
+        while (bstIterator.hasNext) {
+            bstIterator.next() shouldBe expected[i]
+            i++
+        }
+    }
 })
 
 //     1

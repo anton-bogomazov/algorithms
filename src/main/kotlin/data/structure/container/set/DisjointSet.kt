@@ -1,4 +1,4 @@
-package data.structure.set
+package data.structure.container.set
 
 class DisjointSet<T>(universe: Array<T>) {
     private val parent: MutableMap<T, T> = HashMap()

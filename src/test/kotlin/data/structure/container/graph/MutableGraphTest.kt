@@ -1,4 +1,4 @@
-package data.structure.graph
+package data.structure.container.graph
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe

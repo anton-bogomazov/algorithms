@@ -1,6 +1,6 @@
 package algorithm.list
 
-import data.structure.list.Node
+import data.structure.primitive.Node
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 

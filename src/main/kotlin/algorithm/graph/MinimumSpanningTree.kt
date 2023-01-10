@@ -1,8 +1,8 @@
 package algorithm.graph
 
-import data.structure.graph.WeightedEdge
-import data.structure.graph.WeightedGraph
-import data.structure.set.DisjointSet
+import data.structure.container.graph.WeightedEdge
+import data.structure.container.graph.WeightedGraph
+import data.structure.container.set.DisjointSet
 
 // Kruskal’s Algorithm
 // Find a minimum spanning tree for graph.

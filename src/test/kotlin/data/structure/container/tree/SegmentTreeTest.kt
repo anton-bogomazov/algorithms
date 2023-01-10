@@ -1,4 +1,4 @@
-package data.structure.tree
+package data.structure.container.tree
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec

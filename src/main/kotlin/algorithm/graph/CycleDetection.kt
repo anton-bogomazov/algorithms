@@ -1,7 +1,7 @@
 package algorithm.graph
 
-import data.structure.graph.WeightedGraph
-import data.structure.set.DisjointSet
+import data.structure.container.graph.WeightedGraph
+import data.structure.container.set.DisjointSet
 
 // Detect a cycle in graph.
 // Worst case complexity time/space: O(n)/O(n)

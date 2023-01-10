@@ -1,6 +1,6 @@
 package algorithm.list
 
-import data.structure.list.Node
+import data.structure.primitive.Node
 
 // Given a pointer to the head node of a linked list. Reverse this list.
 // Worst case complexity time/space: O(n)/O(1)

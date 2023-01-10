@@ -1,4 +1,4 @@
-package data.structure.graph
+package data.structure.container.graph
 
 
 interface Graph<T, E : Edge<T>> {

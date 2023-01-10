@@ -1,8 +1,8 @@
 package algorithm.graph
 
-import data.structure.graph.Edge
-import data.structure.graph.Graph
-import data.structure.graph.Vertex
+import data.structure.container.graph.Edge
+import data.structure.container.graph.Graph
+import data.structure.container.graph.Vertex
 import java.util.*
 
 fun <T> Graph<T, out Edge<T>>.breadthFirstSearch(startVertex: Vertex<T>): ArrayList<Vertex<T>> {

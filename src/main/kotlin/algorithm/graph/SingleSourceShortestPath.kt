@@ -1,7 +1,7 @@
 package algorithm.graph
 
-import data.structure.graph.Vertex
-import data.structure.graph.WeightedGraph
+import data.structure.container.graph.Vertex
+import data.structure.container.graph.WeightedGraph
 
 // Bellman–Ford Algorithm
 // Compute the shortest paths from a single source vertex

@@ -1,7 +1,7 @@
 package algorithm.graph
 
-import data.structure.graph.Vertex
-import data.structure.graph.WeightedGraph
+import data.structure.container.graph.Vertex
+import data.structure.container.graph.WeightedGraph
 
 // Floyd Warshall Algorithm
 // Find the shortest path weights from every source for all vertices in the graph.

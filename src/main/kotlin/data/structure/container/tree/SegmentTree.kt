@@ -1,4 +1,4 @@
-package data.structure.tree
+package data.structure.container.tree
 
 import util.isOdd
 

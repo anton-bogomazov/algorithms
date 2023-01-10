@@ -1,8 +1,8 @@
 package algorithm.graph
 
-import data.structure.graph.Edge
-import data.structure.graph.WeightedEdge
-import data.structure.graph.WeightedGraph
+import data.structure.container.graph.Edge
+import data.structure.container.graph.WeightedEdge
+import data.structure.container.graph.WeightedGraph
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.shouldBe

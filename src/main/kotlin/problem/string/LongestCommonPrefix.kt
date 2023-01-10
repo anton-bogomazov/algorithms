@@ -1,6 +1,6 @@
 package problem.string
 
-import data.structure.tree.Trie
+import data.structure.container.tree.Trie
 
 // Find the longest common prefix between a given set of strings.
 // Complexity time/space: O(n)/O(n)

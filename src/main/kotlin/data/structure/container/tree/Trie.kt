@@ -1,4 +1,4 @@
-package data.structure.tree
+package data.structure.container.tree
 
 // A tree-like data structure used to store a dictionary of words, where each node represents a prefix of a word.
 // Used for efficient search and insertion of words in a dictionary, and for searching for words with a given prefix.
